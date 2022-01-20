@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class TestSeguroDao</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class TestSeguroDao</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/default-package.html">default-package</a> &gt; TestSeguroDao</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">5</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.305s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">delete()</td>
+<td class="success">0.259s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">init()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">insert()</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">read()</td>
+<td class="success">0.018s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">update()</td>
+<td class="success">0.017s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>Hibernate: drop table if exists SEGURO CASCADE 
+Hibernate: create table SEGURO (ID_SEGURO integer not null, APE1 varchar(255), APE2 varchar(255), CASADO char(1), EDAD integer, FECHA_CREACION timestamp, NIF varchar(9) not null, NOMBRE varchar(255), NUM_HIJOS integer, SEXO integer, TIPO_SEGURO varchar(255), primary key (ID_SEGURO))
+Hibernate: alter table SEGURO add constraint UK_t26xvqqkje2yojm9s0xv06hg9 unique (NIF)
+Hibernate: drop table if exists SEGURO CASCADE 
+Hibernate: create table SEGURO (ID_SEGURO integer not null, APE1 varchar(255), APE2 varchar(255), CASADO char(1), EDAD integer, FECHA_CREACION timestamp, NIF varchar(9) not null, NOMBRE varchar(255), NUM_HIJOS integer, SEXO integer, TIPO_SEGURO varchar(255), primary key (ID_SEGURO))
+Hibernate: alter table SEGURO add constraint UK_t26xvqqkje2yojm9s0xv06hg9 unique (NIF)
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: insert into SEGURO (APE1, APE2, CASADO, EDAD, FECHA_CREACION, NIF, NOMBRE, NUM_HIJOS, SEXO, TIPO_SEGURO, ID_SEGURO) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: delete from SEGURO where ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: insert into SEGURO (APE1, APE2, CASADO, EDAD, FECHA_CREACION, NIF, NOMBRE, NUM_HIJOS, SEXO, TIPO_SEGURO, ID_SEGURO) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: insert into SEGURO (APE1, APE2, CASADO, EDAD, FECHA_CREACION, NIF, NOMBRE, NUM_HIJOS, SEXO, TIPO_SEGURO, ID_SEGURO) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: update SEGURO set APE1=?, APE2=?, CASADO=?, EDAD=?, FECHA_CREACION=?, NIF=?, NOMBRE=?, NUM_HIJOS=?, SEXO=?, TIPO_SEGURO=? where ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: insert into SEGURO (APE1, APE2, CASADO, EDAD, FECHA_CREACION, NIF, NOMBRE, NUM_HIJOS, SEXO, TIPO_SEGURO, ID_SEGURO) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+Hibernate: select seguro0_.ID_SEGURO as id_segur1_0_0_, seguro0_.APE1 as ape2_0_0_, seguro0_.APE2 as ape3_0_0_, seguro0_.CASADO as casado4_0_0_, seguro0_.EDAD as edad5_0_0_, seguro0_.FECHA_CREACION as fecha_cr6_0_0_, seguro0_.NIF as nif7_0_0_, seguro0_.NOMBRE as nombre8_0_0_, seguro0_.NUM_HIJOS as num_hijo9_0_0_, seguro0_.SEXO as sexo10_0_0_, seguro0_.TIPO_SEGURO as tipo_se11_0_0_ from SEGURO seguro0_ where seguro0_.ID_SEGURO=?
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>ene 20, 2022 7:14:20 P. M. org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH000204: Processing PersistenceUnitInfo [name: Persistencia]
+ene 20, 2022 7:14:20 P. M. org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate ORM core version 5.6.1.Final
+ene 20, 2022 7:14:20 P. M. org.hibernate.annotations.common.reflection.java.JavaReflectionManager &lt;clinit&gt;
+INFO: HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+ene 20, 2022 7:14:20 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+ene 20, 2022 7:14:20 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [org.h2.Driver] at URL [jdbc:h2:./src/main/resources/seguros]
+ene 20, 2022 7:14:20 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=sa}
+ene 20, 2022 7:14:20 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+ene 20, 2022 7:14:20 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections &lt;init&gt;
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
+ene 20, 2022 7:14:21 P. M. org.hibernate.dialect.Dialect &lt;init&gt;
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+ene 20, 2022 7:14:21 P. M. org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@539a138b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+ene 20, 2022 7:14:21 P. M. org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2f14b0f6] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+ene 20, 2022 7:14:21 P. M. org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+ene 20, 2022 7:14:22 P. M. org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH000204: Processing PersistenceUnitInfo [name: Persistencia]
+ene 20, 2022 7:14:22 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+ene 20, 2022 7:14:22 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [org.h2.Driver] at URL [jdbc:h2:./src/main/resources/seguros]
+ene 20, 2022 7:14:22 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=sa}
+ene 20, 2022 7:14:22 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+ene 20, 2022 7:14:22 P. M. org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections &lt;init&gt;
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
+ene 20, 2022 7:14:22 P. M. org.hibernate.dialect.Dialect &lt;init&gt;
+INFO: HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+ene 20, 2022 7:14:22 P. M. org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3ddb774f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+ene 20, 2022 7:14:22 P. M. org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2582b0ef] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+ene 20, 2022 7:14:22 P. M. org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+ERROR. No se encuentra ningún seguro con el id 5
+ERROR. No se puede eliminar el seguro con el id 5689. No se encuentra en la base de datos
+ERROR. No se encuentra ningún seguro con el id 5689
+ERROR. No se puede modificar el seguro con el id 258. No se encuentra en la base de datos
+ERROR. No se encuentra ningún seguro con el id 258
+ERROR. No se encuentra ningún seguro con el id 365
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.2</a> at 20 ene 2022 19:14:22</p>
+</div>
+</div>
+</body>
+</html>

@@ -90,21 +90,6 @@ public class SeguroDAO {
         }
     }
 
-    //Este método no funciona, la fórmula siempre devuelve false
-    public static void mayor_edad(Seguro seguro) {
-
-        init();
-
-        if (isExists(seguro.getIdSeguro())) {
-            if (seguro.isMayor_edad())
-                System.out.println("La persona con el id de seguro " + seguro.getIdSeguro() + " es mayor de edad");
-            else
-                System.out.println("La persona con el id de seguro " + seguro.getIdSeguro() + " no es mayor de edad");
-        } else {
-            System.err.println("ERROR. No se encuentra ningún seguro con el id " + seguro.getIdSeguro());
-        }
-    }
-
     private static boolean isExists(int id) {
 
         Seguro segExist = manager.find(Seguro.class, id);

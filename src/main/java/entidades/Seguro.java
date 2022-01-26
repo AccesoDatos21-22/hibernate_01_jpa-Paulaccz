@@ -1,5 +1,7 @@
 package entidades;
 
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -43,6 +45,9 @@ public class Seguro implements Serializable {
     @Column(name = "TIPO_SEGURO")
     private String tipoSeguro;
 
+    @Formula("edad>=18")
+    private boolean mayor_edad;
+
     public Seguro() {
 
     }
@@ -59,6 +64,14 @@ public class Seguro implements Serializable {
         this.numHijos = numHijos;
         this.fechaCreacion = fechaCreacion;
         this.tipoSeguro = tipoSeguro;
+    }
+
+    public boolean isMayor_edad() {
+        return mayor_edad;
+    }
+
+    public void setMayor_edad(boolean mayor_edad) {
+        this.mayor_edad = mayor_edad;
     }
 
     public int getIdSeguro() {

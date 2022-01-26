@@ -27,12 +27,12 @@ public class SeguroDAO {
 
         if (!isExists(seguroInsert.getIdSeguro())) {
             manager.persist(seguroInsert);
-//            Seguro search = manager.find(Seguro.class, seguroInsert.getIdSeguro());
-//            System.out.println(search);
         } else
             System.err.println("ERROR. Id duplicado. No se insertará el seguro con id " + seguroInsert.getIdSeguro());
 
         transaction.commit();
+
+        close();
     }
 
     public static void update(int id, Seguro seguro) {
@@ -56,6 +56,8 @@ public class SeguroDAO {
             transaction.commit();
         } else
             System.err.println("ERROR. No se puede modificar el seguro con el id " + id + ". No se encuentra en la base de datos");
+
+        close();
     }
 
     public static void delete(int id) {
@@ -69,6 +71,8 @@ public class SeguroDAO {
             transaction.commit();
         } else
             System.err.println("ERROR. No se puede eliminar el seguro con el id " + id + ". No se encuentra en la base de datos");
+
+        close();
     }
 
     public static Seguro search(int id) {
@@ -77,12 +81,28 @@ public class SeguroDAO {
 
         if (!isExists(id)) {
             System.err.println("ERROR. No se encuentra ningún seguro con el id " + id);
+            close();
             return null;
         } else {
             Seguro seguroSearch = manager.find(Seguro.class, id);
+            close();
             return seguroSearch;
         }
+    }
 
+    //Este método no funciona, la fórmula siempre devuelve false
+    public static void mayor_edad(Seguro seguro) {
+
+        init();
+
+        if (isExists(seguro.getIdSeguro())) {
+            if (seguro.isMayor_edad())
+                System.out.println("La persona con el id de seguro " + seguro.getIdSeguro() + " es mayor de edad");
+            else
+                System.out.println("La persona con el id de seguro " + seguro.getIdSeguro() + " no es mayor de edad");
+        } else {
+            System.err.println("ERROR. No se encuentra ningún seguro con el id " + seguro.getIdSeguro());
+        }
     }
 
     private static boolean isExists(int id) {
@@ -93,4 +113,12 @@ public class SeguroDAO {
             return false;
         return true;
     }
+
+    private static void close() {
+        if (transaction.isActive())
+            transaction.rollback();
+
+        manager.close();
+    }
+
 }

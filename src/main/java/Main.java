@@ -11,14 +11,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-       /* Seguro seguro = new Seguro(1, "17546586R", "Joaquin", "Soria", "Soria", 19, 0, 's', 0, Timestamp.valueOf("2013-04-22 19:05:11"), "Hogar");
+        /*Seguro seguro = new Seguro(1, "17546586R", "Joaquin", "Soria", "Soria", 20, 0, 's', 0, Timestamp.valueOf("2013-04-22 19:05:11"), "Hogar");
         Seguro seguro1 = new Seguro(2, "22737883Z", "Maria", "Rodriguez", "Martinez", 40, 1, 'S', 3, Timestamp.valueOf("2013-04-22 19:05:12"), "Hogar");
 
         // Prueba insert
         SeguroDAO.insert(seguro1);
         SeguroDAO.insert(seguro);
         SeguroDAO.insert(seguro1);
-
 
         //Prueba search
         System.out.println("----->> Los datos del seguro solicitado son: <<-----");
@@ -38,7 +37,9 @@ public class Main {
         SeguroDAO.delete(1);
 
         Seguro seg2r = SeguroDAO.search(1);
-        System.out.println(seg2r);*/
-    }
+        System.out.println(seg2r);
 
+        SeguroDAO.mayor_edad(seguro);*/
+
+    }
 }

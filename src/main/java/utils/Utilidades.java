@@ -17,4 +17,5 @@ public class Utilidades {
         manager = factory.createEntityManager();
         return manager;
     }
+
 }

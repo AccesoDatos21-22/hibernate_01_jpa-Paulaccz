@@ -138,5 +138,19 @@ public class TestSeguroDao {
         });
 
     }
+    
+    @Test
+    void FechaNacimiento() {
+        assertDoesNotThrow(() -> {
+
+            Seguro segInsert = new Seguro(9, "65975785I", "Paula", "Cabello", "Cano", 21, Seguro.Sexo.MUJER, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE, LocalDate.of(2001, 9, 05));
+            SeguroDAO.insert(segInsert);
+
+            //Buscamos el objeto y comparamos el campo fecha con la fecha del seguro insertado para comprobar que se ha guardado correctamente
+            Seguro segSearch = SeguroDAO.search(9);
+
+            assertEquals(segSearch.getFecha_nac(), LocalDate.of(2001, 9, 5));
+        });
+    }
 
 }

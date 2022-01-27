@@ -5,6 +5,7 @@ import org.hibernate.annotations.Formula;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "SEGURO", uniqueConstraints = {@UniqueConstraint(columnNames = {"ID_SEGURO"})})
@@ -30,13 +31,13 @@ public class Seguro implements Serializable {
     @Column(name = "EDAD", length = 11)
     private int edad;
 
-    public enum Sexo{HOMBRE, MUJER};
+    public enum Sexo {HOMBRE, MUJER};
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "SEXO")
     private Sexo sexo;
 
-    public enum Casado{Y, N};
+    public enum Casado {Y, N};
 
     @Enumerated(EnumType.STRING)
     @Column(name = "CASADO", length = 1)
@@ -48,7 +49,9 @@ public class Seguro implements Serializable {
     @Column(name = "FECHA_CREACION")
     private Timestamp fechaCreacion;
 
-    public enum TipoSeguro{HOGAR, COCHE, MOTO, VIAJE};
+    public enum TipoSeguro {HOGAR, COCHE, MOTO, VIAJE}
+
+    ;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "TIPO_SEGURO", nullable = false)
@@ -57,11 +60,14 @@ public class Seguro implements Serializable {
     @Formula("edad>=18")
     private boolean mayor_edad;
 
+    @Column(name = "FECHA_NACIMIENTO")
+    private LocalDate fecha_nac;
+
     public Seguro() {
 
     }
 
-    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, Sexo sexo, Casado casado, int numHijos, Timestamp fechaCreacion, TipoSeguro tipoSeguro) {
+    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, Sexo sexo, Casado casado, int numHijos, Timestamp fechaCreacion, TipoSeguro tipoSeguro, LocalDate fecha_nac) {
         this.idSeguro = idSeguro;
         this.nif = nif;
         this.nombre = nombre;
@@ -73,6 +79,7 @@ public class Seguro implements Serializable {
         this.numHijos = numHijos;
         this.fechaCreacion = fechaCreacion;
         this.tipoSeguro = tipoSeguro;
+        this.fecha_nac = fecha_nac;
     }
 
     public boolean isMayor_edad() {
@@ -171,11 +178,19 @@ public class Seguro implements Serializable {
         this.tipoSeguro = tipoSeguro;
     }
 
+    public LocalDate getFecha_nac() {
+        return fecha_nac;
+    }
+
+    public void setFecha_nac(LocalDate fecha_nac) {
+        this.fecha_nac = fecha_nac;
+    }
+
     @Override
     public String toString() {
         return "\nDatos del seguro: " + "\nId: " + idSeguro + "\nNif: " + nif + "\nNombre: " + nombre +
                 "\nApellido 1: " + ape1 + "\nApellido 2: " + ape2 + "\nEdad: " + edad + "\nNúmero de hijos: " + numHijos
-                + "\nSexo: " +  sexo /*(sexo == 0 ? "Hombre" : "Mujer")*/ + "\nCasad@: " + casado /*(casado == 's' || casado == 'S' ? "Si" : "No")*/ +
+                + "\nSexo: " + sexo /*(sexo == 0 ? "Hombre" : "Mujer")*/ + "\nCasad@: " + casado /*(casado == 's' || casado == 'S' ? "Si" : "No")*/ +
                 "\nFecha de creación: " + fechaCreacion + "\nTipo de seguro: " + tipoSeguro + "\nMayor de edad: " + mayor_edad;
     }
 }

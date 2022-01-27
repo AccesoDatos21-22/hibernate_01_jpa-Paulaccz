@@ -30,11 +30,17 @@ public class Seguro implements Serializable {
     @Column(name = "EDAD", length = 11)
     private int edad;
 
-    @Column(name = "SEXO", length = 11)
-    private int sexo;
+    public enum Sexo{HOMBRE, MUJER};
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "SEXO")
+    private Sexo sexo;
+
+    public enum Casado{Y, N};
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "CASADO", length = 1)
-    private char casado;
+    private Casado casado;
 
     @Column(name = "NUM_HIJOS", length = 11)
     private int numHijos;
@@ -42,8 +48,11 @@ public class Seguro implements Serializable {
     @Column(name = "FECHA_CREACION")
     private Timestamp fechaCreacion;
 
-    @Column(name = "TIPO_SEGURO")
-    private String tipoSeguro;
+    public enum TipoSeguro{HOGAR, COCHE, MOTO, VIAJE};
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TIPO_SEGURO", nullable = false)
+    private TipoSeguro tipoSeguro;
 
     @Formula("edad>=18")
     private boolean mayor_edad;
@@ -52,7 +61,7 @@ public class Seguro implements Serializable {
 
     }
 
-    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, int sexo, char casado, int numHijos, Timestamp fechaCreacion, String tipoSeguro) {
+    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, Sexo sexo, Casado casado, int numHijos, Timestamp fechaCreacion, TipoSeguro tipoSeguro) {
         this.idSeguro = idSeguro;
         this.nif = nif;
         this.nombre = nombre;
@@ -122,19 +131,19 @@ public class Seguro implements Serializable {
         this.edad = edad;
     }
 
-    public int getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(int sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 
-    public char getCasado() {
+    public Casado getCasado() {
         return casado;
     }
 
-    public void setCasado(char casado) {
+    public void setCasado(Casado casado) {
         this.casado = casado;
     }
 
@@ -154,11 +163,11 @@ public class Seguro implements Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public String getTipoSeguro() {
+    public TipoSeguro getTipoSeguro() {
         return tipoSeguro;
     }
 
-    public void setTipoSeguro(String tipoSeguro) {
+    public void setTipoSeguro(TipoSeguro tipoSeguro) {
         this.tipoSeguro = tipoSeguro;
     }
 
@@ -166,7 +175,7 @@ public class Seguro implements Serializable {
     public String toString() {
         return "\nDatos del seguro: " + "\nId: " + idSeguro + "\nNif: " + nif + "\nNombre: " + nombre +
                 "\nApellido 1: " + ape1 + "\nApellido 2: " + ape2 + "\nEdad: " + edad + "\nNúmero de hijos: " + numHijos
-                + "\nSexo: " + (sexo == 0 ? "Hombre" : "Mujer") + "\nCasad@: " + (casado == 's' || casado == 'S' ? "Si" : "No") +
+                + "\nSexo: " +  sexo /*(sexo == 0 ? "Hombre" : "Mujer")*/ + "\nCasad@: " + casado /*(casado == 's' || casado == 'S' ? "Si" : "No")*/ +
                 "\nFecha de creación: " + fechaCreacion + "\nTipo de seguro: " + tipoSeguro + "\nMayor de edad: " + mayor_edad;
     }
 }

@@ -30,7 +30,7 @@ public class TestSeguroDao {
     @Test
     void insert() {
         assertDoesNotThrow(() -> {
-            Seguro seguroIn = new Seguro(1, "89652565A", "María", "Costa", "Costa", 35, 1, 'N', 0, Timestamp.valueOf("2013-04-22 19:05:12"), "Ccohe");
+            Seguro seguroIn = new Seguro(1, "89652565A", "María", "Costa", "Costa", 35, Seguro.Sexo.MUJER, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:12"), Seguro.TipoSeguro.MOTO);
 
             SeguroDAO.insert(seguroIn);
             Seguro s = SeguroDAO.search(1);
@@ -43,7 +43,7 @@ public class TestSeguroDao {
     void read() {
         assertDoesNotThrow(() -> {
 
-            Seguro segInsert = new Seguro(2, "51413256B", "Pablo", "Fernández", "Fernández", 45, 0, 's', 2, Timestamp.valueOf("2013-04-25 19:05:45"), "Hogar");
+            Seguro segInsert = new Seguro(2, "51413256B", "Pablo", "Fernández", "Fernández", 45, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-25 19:05:45"), Seguro.TipoSeguro.HOGAR);
 
             SeguroDAO.insert(segInsert);
             Seguro s = SeguroDAO.search(2);
@@ -53,7 +53,7 @@ public class TestSeguroDao {
             assertEquals(s.toString(), segSearch.toString());
 
             //Prueba para seguro inexistente
-            Seguro segNoInsert = new Seguro(365, "51413256C", "Pepe", "Martínez", "Martínez", 58, 0, 'n', 2, Timestamp.valueOf("2013-04-25 19:20:45"), "Coche");
+            Seguro segNoInsert = new Seguro(365, "51413256C", "Pepe", "Martínez", "Martínez", 58, Seguro.Sexo.HOMBRE, Seguro.Casado.N, 2, Timestamp.valueOf("2013-04-25 19:20:45"), Seguro.TipoSeguro.COCHE);
             assertNull(SeguroDAO.search(segNoInsert.getIdSeguro()));
 
         });
@@ -64,10 +64,10 @@ public class TestSeguroDao {
         assertDoesNotThrow(() -> {
 
             //Se inserta seguro para posteriormente modificarlo y compararlo
-            Seguro segInsert = new Seguro(4, "65984589D", "Ana", "López", "López", 25, 1, 'n', 0, Timestamp.valueOf("2013-04-22 19:05:13"), "Coche");
+            Seguro segInsert = new Seguro(4, "65984589D", "Ana", "López", "López", 25, Seguro.Sexo.MUJER, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE);
             SeguroDAO.insert(segInsert);
 
-            Seguro seguroUpdate = new Seguro(4, "65984589D", "Jose", "Pérez", "Pérez", 45, 0, 'S', 2, Timestamp.valueOf("2013-04-22 19:05:13"), "Hogar");
+            Seguro seguroUpdate = new Seguro(4, "65984589D", "Jose", "Pérez", "Pérez", 45, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.HOGAR);
 
             SeguroDAO.update(4, seguroUpdate);
             Seguro s = SeguroDAO.search(4);
@@ -86,7 +86,7 @@ public class TestSeguroDao {
         assertDoesNotThrow(() -> {
 
             //Se inserta seguro para posteriormente eliminar y comprobar que se elimina correctamente
-            Seguro seguroDelete = new Seguro(5, "65984589E", "Pepe", "Soriano", "Soriano", 45, 0, 'S', 2, Timestamp.valueOf("2013-04-22 19:05:13"), "Hogar");
+            Seguro seguroDelete = new Seguro(5, "65984589E", "Pepe", "Soriano", "Soriano", 45, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE);
             SeguroDAO.insert(seguroDelete);
 
             //Prueba para comprobar que se elimina seguro existente
@@ -104,8 +104,8 @@ public class TestSeguroDao {
         assertDoesNotThrow(() -> {
 
             //Creamos seguros, uno mayor de edad y otro no
-            Seguro seguroMayorEdad = new Seguro(6, "65975539F", "Laura", "Pascual", "Pascual", 45, 1, 'S', 2, Timestamp.valueOf("2013-04-22 19:05:13"), "Hogar");
-            Seguro seguroMenorEdad = new Seguro(7, "65975539G", "Mario", "Gutierrez", "Gutierrez", 17, 0, 'N', 0, Timestamp.valueOf("2013-04-22 19:05:13"), "Coche");
+            Seguro seguroMayorEdad = new Seguro(6, "65975539F", "Laura", "Pascual", "Pascual", 45, Seguro.Sexo.MUJER, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.HOGAR);
+            Seguro seguroMenorEdad = new Seguro(7, "65975539G", "Mario", "Gutierrez", "Gutierrez", 17, Seguro.Sexo.HOMBRE, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.MOTO);
 
             SeguroDAO.insert(seguroMayorEdad);
             SeguroDAO.insert(seguroMenorEdad);
@@ -121,6 +121,21 @@ public class TestSeguroDao {
 
             assertTrue(segBuscarMenor.isMayor_edad());
         });
+    }
+
+    @Test
+    void testTipoSeguro() {
+
+        assertDoesNotThrow(() -> {
+
+            Seguro segInsert = new Seguro(8, "65975556H", "Juan", "Gómez", "Gómez", 30, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 1, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE);
+            SeguroDAO.insert(segInsert);
+
+            Seguro segSearch = SeguroDAO.search(8);
+
+            assertEquals(segSearch.getTipoSeguro(), Seguro.TipoSeguro.VIAJE);
+        });
+
     }
 
 }

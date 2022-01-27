@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "SEGURO", uniqueConstraints = {@UniqueConstraint(columnNames = {"ID_SEGURO"})})
@@ -63,11 +64,14 @@ public class Seguro implements Serializable {
     @Column(name = "FECHA_NACIMIENTO")
     private LocalDate fecha_nac;
 
+    @Column(name = "HORA_CONTACTO")
+    private LocalTime hora_contacto;
+
     public Seguro() {
 
     }
 
-    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, Sexo sexo, Casado casado, int numHijos, Timestamp fechaCreacion, TipoSeguro tipoSeguro, LocalDate fecha_nac) {
+    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, Sexo sexo, Casado casado, int numHijos, Timestamp fechaCreacion, TipoSeguro tipoSeguro, LocalDate fecha_nac, LocalTime hora_contacto) {
         this.idSeguro = idSeguro;
         this.nif = nif;
         this.nombre = nombre;
@@ -80,6 +84,7 @@ public class Seguro implements Serializable {
         this.fechaCreacion = fechaCreacion;
         this.tipoSeguro = tipoSeguro;
         this.fecha_nac = fecha_nac;
+        this.hora_contacto = hora_contacto;
     }
 
     public boolean isMayor_edad() {
@@ -186,11 +191,20 @@ public class Seguro implements Serializable {
         this.fecha_nac = fecha_nac;
     }
 
+    public LocalTime getHora_contacto() {
+        return hora_contacto;
+    }
+
+    public void setHora_contacto(LocalTime hora_contacto) {
+        this.hora_contacto = hora_contacto;
+    }
+
     @Override
     public String toString() {
         return "\nDatos del seguro: " + "\nId: " + idSeguro + "\nNif: " + nif + "\nNombre: " + nombre +
                 "\nApellido 1: " + ape1 + "\nApellido 2: " + ape2 + "\nEdad: " + edad + "\nNúmero de hijos: " + numHijos
                 + "\nSexo: " + sexo /*(sexo == 0 ? "Hombre" : "Mujer")*/ + "\nCasad@: " + casado /*(casado == 's' || casado == 'S' ? "Si" : "No")*/ +
-                "\nFecha de creación: " + fechaCreacion + "\nTipo de seguro: " + tipoSeguro + "\nMayor de edad: " + mayor_edad + "\nFecha de nacimiento: " + fecha_nac;
+                "\nFecha de creación: " + fechaCreacion + "\nTipo de seguro: " + tipoSeguro + "\nMayor de edad: " + mayor_edad + "\nFecha de nacimiento: " + fecha_nac
+                + "\nHora de contacto: " + hora_contacto;
     }
 }

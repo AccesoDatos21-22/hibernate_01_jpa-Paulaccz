@@ -9,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,7 +32,7 @@ public class TestSeguroDao {
     @Test
     void insert() {
         assertDoesNotThrow(() -> {
-            Seguro seguroIn = new Seguro(1, "89652565A", "María", "Costa", "Costa", 35, Seguro.Sexo.MUJER, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:12"), Seguro.TipoSeguro.MOTO,  LocalDate.of(1985, 7, 25));
+            Seguro seguroIn = new Seguro(1, "89652565A", "María", "Costa", "Costa", 35, Seguro.Sexo.MUJER, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:12"), Seguro.TipoSeguro.MOTO, LocalDate.of(1985, 7, 25), LocalTime.of(12, 30));
 
             SeguroDAO.insert(seguroIn);
             Seguro s = SeguroDAO.search(1);
@@ -44,7 +45,7 @@ public class TestSeguroDao {
     void read() {
         assertDoesNotThrow(() -> {
 
-            Seguro segInsert = new Seguro(2, "51413256B", "Pablo", "Fernández", "Fernández", 45, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-25 19:05:45"), Seguro.TipoSeguro.HOGAR,  LocalDate.of(1977, 1, 20));
+            Seguro segInsert = new Seguro(2, "51413256B", "Pablo", "Fernández", "Fernández", 45, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-25 19:05:45"), Seguro.TipoSeguro.HOGAR, LocalDate.of(1977, 1, 20), LocalTime.of(12, 15));
 
             SeguroDAO.insert(segInsert);
             Seguro s = SeguroDAO.search(2);
@@ -54,7 +55,7 @@ public class TestSeguroDao {
             assertEquals(s.toString(), segSearch.toString());
 
             //Prueba para seguro inexistente
-            Seguro segNoInsert = new Seguro(365, "51413256C", "Pepe", "Martínez", "Martínez", 58, Seguro.Sexo.HOMBRE, Seguro.Casado.N, 2, Timestamp.valueOf("2013-04-25 19:20:45"), Seguro.TipoSeguro.COCHE,  LocalDate.of(1962, 5, 15));
+            Seguro segNoInsert = new Seguro(365, "51413256C", "Pepe", "Martínez", "Martínez", 58, Seguro.Sexo.HOMBRE, Seguro.Casado.N, 2, Timestamp.valueOf("2013-04-25 19:20:45"), Seguro.TipoSeguro.COCHE, LocalDate.of(1962, 5, 15), LocalTime.of(10, 30));
             assertNull(SeguroDAO.search(segNoInsert.getIdSeguro()));
 
         });
@@ -65,10 +66,10 @@ public class TestSeguroDao {
         assertDoesNotThrow(() -> {
 
             //Se inserta seguro para posteriormente modificarlo y compararlo
-            Seguro segInsert = new Seguro(4, "65984589D", "Ana", "López", "López", 25, Seguro.Sexo.MUJER, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE,  LocalDate.of(1995, 12, 12));
+            Seguro segInsert = new Seguro(4, "65984589D", "Ana", "López", "López", 25, Seguro.Sexo.MUJER, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE, LocalDate.of(1995, 12, 12), LocalTime.of(13, 30));
             SeguroDAO.insert(segInsert);
 
-            Seguro seguroUpdate = new Seguro(4, "65984589D", "Jose", "Pérez", "Pérez", 45, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.HOGAR,  LocalDate.of(1975, 3, 30));
+            Seguro seguroUpdate = new Seguro(4, "65984589D", "Jose", "Pérez", "Pérez", 45, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.HOGAR, LocalDate.of(1975, 3, 30), LocalTime.of(12, 45));
 
             SeguroDAO.update(4, seguroUpdate);
             Seguro s = SeguroDAO.search(4);
@@ -87,7 +88,7 @@ public class TestSeguroDao {
         assertDoesNotThrow(() -> {
 
             //Se inserta seguro para posteriormente eliminar y comprobar que se elimina correctamente
-            Seguro seguroDelete = new Seguro(5, "65984589E", "Pepe", "Soriano", "Soriano", 45, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE,  LocalDate.of(1975, 9, 17));
+            Seguro seguroDelete = new Seguro(5, "65984589E", "Pepe", "Soriano", "Soriano", 45, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE, LocalDate.of(1975, 9, 17), LocalTime.of(9, 30));
             SeguroDAO.insert(seguroDelete);
 
             //Prueba para comprobar que se elimina seguro existente
@@ -105,8 +106,8 @@ public class TestSeguroDao {
         assertDoesNotThrow(() -> {
 
             //Creamos seguros, uno mayor de edad y otro no
-            Seguro seguroMayorEdad = new Seguro(6, "65975539F", "Laura", "Pascual", "Pascual", 45, Seguro.Sexo.MUJER, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.HOGAR,  LocalDate.of(1975, 1, 20));
-            Seguro seguroMenorEdad = new Seguro(7, "65975539G", "Mario", "Gutierrez", "Gutierrez", 17, Seguro.Sexo.HOMBRE, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.MOTO,  LocalDate.of(2003, 5, 16));
+            Seguro seguroMayorEdad = new Seguro(6, "65975539F", "Laura", "Pascual", "Pascual", 45, Seguro.Sexo.MUJER, Seguro.Casado.Y, 2, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.HOGAR, LocalDate.of(1975, 1, 20), LocalTime.of(12, 30));
+            Seguro seguroMenorEdad = new Seguro(7, "65975539G", "Mario", "Gutierrez", "Gutierrez", 17, Seguro.Sexo.HOMBRE, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.MOTO, LocalDate.of(2003, 5, 16), LocalTime.of(10, 30));
 
             SeguroDAO.insert(seguroMayorEdad);
             SeguroDAO.insert(seguroMenorEdad);
@@ -129,14 +130,27 @@ public class TestSeguroDao {
 
         assertDoesNotThrow(() -> {
 
-            Seguro segInsert = new Seguro(8, "65975556H", "Juan", "Gómez", "Gómez", 30, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 1, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE,  LocalDate.of(1990, 6, 20));
+            Seguro segInsert = new Seguro(8, "65975556H", "Juan", "Gómez", "Gómez", 30, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 1, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE, LocalDate.of(1990, 6, 20), LocalTime.of(11, 45));
             SeguroDAO.insert(segInsert);
 
             Seguro segSearch = SeguroDAO.search(8);
 
             assertEquals(segSearch.getTipoSeguro(), Seguro.TipoSeguro.VIAJE);
         });
+    }
 
+    @Test
+    void fechaNacimiento() {
+        assertDoesNotThrow(() -> {
+
+            Seguro segInsert = new Seguro(9, "65975785I", "Paula", "Cabello", "Cano", 21, Seguro.Sexo.MUJER, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE, LocalDate.of(2001, 9, 05), LocalTime.of(13, 40));
+            SeguroDAO.insert(segInsert);
+
+            //Buscamos el objeto y comparamos el campo fecha con la fecha del seguro insertado para comprobar que se ha guardado correctamente
+            Seguro segSearch = SeguroDAO.search(9);
+
+            assertEquals(segSearch.getFecha_nac(), LocalDate.of(2001, 9, 5));
+        });
     }
    
     @Test
@@ -153,4 +167,17 @@ public class TestSeguroDao {
         });
     }
 
+    @Test
+    void horaContacto() {
+        assertDoesNotThrow(() -> {
+
+            Seguro segInsert = new Seguro(10, "65977895J", "Jose", "Fernández", "Fernández", 26, Seguro.Sexo.MUJER, Seguro.Casado.N, 0, Timestamp.valueOf("2013-04-22 19:05:13"), Seguro.TipoSeguro.VIAJE, LocalDate.of(1996, 9, 05), LocalTime.of(13, 40));
+            SeguroDAO.insert(segInsert);
+
+            //Buscamos el objeto y comparamos el campo hora con la hora del seguro insertado para comprobar que se ha guardado correctamente
+            Seguro segSearch = SeguroDAO.search(10);
+
+            assertEquals(segSearch.getHora_contacto(), LocalTime.of(13, 40));
+        });
+    }
 }

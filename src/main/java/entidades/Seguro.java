@@ -191,6 +191,6 @@ public class Seguro implements Serializable {
         return "\nDatos del seguro: " + "\nId: " + idSeguro + "\nNif: " + nif + "\nNombre: " + nombre +
                 "\nApellido 1: " + ape1 + "\nApellido 2: " + ape2 + "\nEdad: " + edad + "\nNúmero de hijos: " + numHijos
                 + "\nSexo: " + sexo /*(sexo == 0 ? "Hombre" : "Mujer")*/ + "\nCasad@: " + casado /*(casado == 's' || casado == 'S' ? "Si" : "No")*/ +
-                "\nFecha de creación: " + fechaCreacion + "\nTipo de seguro: " + tipoSeguro + "\nMayor de edad: " + mayor_edad;
+                "\nFecha de creación: " + fechaCreacion + "\nTipo de seguro: " + tipoSeguro + "\nMayor de edad: " + mayor_edad + "\nFecha de nacimiento: " + fecha_nac;
     }
 }

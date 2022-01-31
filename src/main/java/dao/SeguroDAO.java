@@ -52,6 +52,8 @@ public class SeguroDAO {
             seguroUpdate.setCasado(seguro.getCasado());
             seguroUpdate.setFechaCreacion(seguro.getFechaCreacion());
             seguroUpdate.setTipoSeguro(seguro.getTipoSeguro());
+            seguroUpdate.setFecha_nac(seguro.getFecha_nac());
+            seguroUpdate.setHora_contacto(seguro.getHora_contacto());
 
             transaction.commit();
         } else

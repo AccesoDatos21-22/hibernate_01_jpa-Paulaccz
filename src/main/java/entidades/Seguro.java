@@ -76,11 +76,15 @@ public class Seguro implements Serializable {
     @Column(name = "CLAVE")
     private char[] clave;
 
+    @Lob
+    @Column(name = "COMENTARIOS")
+    private String comentarios;
+
     public Seguro() {
 
     }
 
-    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, Sexo sexo, Casado casado, int numHijos, Timestamp fechaCreacion, TipoSeguro tipoSeguro, LocalDate fecha_nac, LocalTime hora_contacto, char[] clave) {
+    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, Sexo sexo, Casado casado, int numHijos, Timestamp fechaCreacion, TipoSeguro tipoSeguro, LocalDate fecha_nac, LocalTime hora_contacto, char[] clave, String comentarios) {
         this.idSeguro = idSeguro;
         this.nif = nif;
         this.nombre = nombre;
@@ -95,6 +99,7 @@ public class Seguro implements Serializable {
         this.fecha_nac = fecha_nac;
         this.hora_contacto = hora_contacto;
         this.clave = clave;
+        this.comentarios = comentarios;
     }
 
     public boolean isMayor_edad() {
@@ -217,6 +222,14 @@ public class Seguro implements Serializable {
         this.clave = clave;
     }
 
+    public String getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(String comentarios) {
+        this.comentarios = comentarios;
+    }
+
     @Override
     public String toString() {
         return "\nDatos del seguro: " + "\nId: " + idSeguro + "\nNif: " + nif + "\nNombre: " + nombre +
@@ -227,7 +240,7 @@ public class Seguro implements Serializable {
     }
 
     private String leerClave(char[] clave) {
-        String claves = null;
+        String claves = "";
 
         for (char caracter : clave)
             claves += caracter + ",";

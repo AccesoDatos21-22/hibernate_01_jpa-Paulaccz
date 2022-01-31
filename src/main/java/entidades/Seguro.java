@@ -4,6 +4,7 @@ import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Blob;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -32,13 +33,17 @@ public class Seguro implements Serializable {
     @Column(name = "EDAD", length = 11)
     private int edad;
 
-    public enum Sexo {HOMBRE, MUJER};
+    public enum Sexo {HOMBRE, MUJER}
+
+    ;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "SEXO")
     private Sexo sexo;
 
-    public enum Casado {Y, N};
+    public enum Casado {Y, N}
+
+    ;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "CASADO", length = 1)
@@ -67,11 +72,15 @@ public class Seguro implements Serializable {
     @Column(name = "HORA_CONTACTO")
     private LocalTime hora_contacto;
 
+    @Lob
+    @Column(name = "CLAVE")
+    private char[] clave;
+
     public Seguro() {
 
     }
 
-    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, Sexo sexo, Casado casado, int numHijos, Timestamp fechaCreacion, TipoSeguro tipoSeguro, LocalDate fecha_nac, LocalTime hora_contacto) {
+    public Seguro(int idSeguro, String nif, String nombre, String ape1, String ape2, int edad, Sexo sexo, Casado casado, int numHijos, Timestamp fechaCreacion, TipoSeguro tipoSeguro, LocalDate fecha_nac, LocalTime hora_contacto, char[] clave) {
         this.idSeguro = idSeguro;
         this.nif = nif;
         this.nombre = nombre;
@@ -85,6 +94,7 @@ public class Seguro implements Serializable {
         this.tipoSeguro = tipoSeguro;
         this.fecha_nac = fecha_nac;
         this.hora_contacto = hora_contacto;
+        this.clave = clave;
     }
 
     public boolean isMayor_edad() {
@@ -199,12 +209,29 @@ public class Seguro implements Serializable {
         this.hora_contacto = hora_contacto;
     }
 
+    public char[] getClave() {
+        return clave;
+    }
+
+    public void setClave(char[] clave) {
+        this.clave = clave;
+    }
+
     @Override
     public String toString() {
         return "\nDatos del seguro: " + "\nId: " + idSeguro + "\nNif: " + nif + "\nNombre: " + nombre +
                 "\nApellido 1: " + ape1 + "\nApellido 2: " + ape2 + "\nEdad: " + edad + "\nNúmero de hijos: " + numHijos
                 + "\nSexo: " + sexo /*(sexo == 0 ? "Hombre" : "Mujer")*/ + "\nCasad@: " + casado /*(casado == 's' || casado == 'S' ? "Si" : "No")*/ +
-                "\nFecha de creación: " + fechaCreacion + "\nTipo de seguro: " + tipoSeguro + "\nMayor de edad: " + mayor_edad + "\nFecha de nacimiento: " + fecha_nac
-                + "\nHora de contacto: " + hora_contacto;
+                "\nFecha de creación: " + fechaCreacion + "\nTipo de seguro: " + tipoSeguro + "\nFecha de nacimiento: " + fecha_nac
+                + "\nHora de contacto: " + hora_contacto + "\nClave: " + leerClave(clave);
+    }
+
+    private String leerClave(char[] clave) {
+        String claves = null;
+
+        for (char caracter : clave)
+            claves += caracter + ",";
+
+        return claves;
     }
 }

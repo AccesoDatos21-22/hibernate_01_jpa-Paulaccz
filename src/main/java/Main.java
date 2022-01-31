@@ -7,13 +7,17 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        /*Seguro seguro = new Seguro(1, "17546586R", "Joaquin", "Soria", "Soria", 17, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 0, Timestamp.valueOf("2013-04-22 19:05:11"), Seguro.TipoSeguro.VIAJE, LocalDate.of(2003, 1, 20));
-        Seguro seguro1 = new Seguro(2, "22737883Z", "Maria", "Rodriguez", "Martinez", 45, Seguro.Sexo.MUJER, Seguro.Casado.Y, 3, Timestamp.valueOf("2013-04-22 19:05:12"), Seguro.TipoSeguro.COCHE, LocalDate.of(1975, 8, 20));
+        /*char[] clave = {'c', 'l', 'a', 'v', 'e', '2'};
+
+        Seguro seguro = new Seguro(1, "17546586R", "Joaquin", "Soria", "Soria", 17, Seguro.Sexo.HOMBRE, Seguro.Casado.Y, 0, Timestamp.valueOf("2013-04-22 19:05:11"), Seguro.TipoSeguro.VIAJE, LocalDate.of(2003, 1, 20), LocalTime.of(13, 40), clave);
+        Seguro seguro1 = new Seguro(2, "22737883Z", "Maria", "Rodriguez", "Martinez", 45, Seguro.Sexo.MUJER, Seguro.Casado.Y, 3, Timestamp.valueOf("2013-04-22 19:05:12"), Seguro.TipoSeguro.COCHE, LocalDate.of(1975, 8, 20), LocalTime.of(13, 40), clave);
+        ;
 
         // Prueba insert
         SeguroDAO.insert(seguro1);
